@@ -36,16 +36,16 @@ Office.onReady(() => {
     // 按鈕綁定
     document.getElementById("btnSend").onclick = () => {
         log("Sending VERIFIED_PASS...");
-        
+
         // 傳送訊號給 Parent (commands.js)
         Office.context.ui.messageParent("VERIFIED_PASS");
-        
+
         // 【新增】視覺回饋，因為視窗關閉需要一點時間
         const btn = document.getElementById("btnSend");
-        btn.innerText = "驗證完成，視窗關閉中...";
+        btn.innerText = "Verification complete, closing window...";
         btn.disabled = true;
     };
-    
+
     document.getElementById("btnCancel").onclick = () => {
         Office.context.ui.messageParent("CANCEL");
     };
@@ -55,30 +55,30 @@ Office.onReady(() => {
 function onParentMessageReceived(arg) {
     try {
         const message = arg.message;
-        const data = JSON.parse(message); 
-        
+        const data = JSON.parse(message);
+
         // 情況 A: Parent 還在忙
         if (data.status === "LOADING") {
             log("⏳ Parent is fetching data...");
             return;
         }
-        
+
         // 情況 B: 收到錯誤
         if (data.error) {
             log("❌ Parent Error: " + data.error);
-            if(pullTimer) clearInterval(pullTimer);
+            if (pullTimer) clearInterval(pullTimer);
             return;
         }
 
         // 情況 C: 收到真正的資料
         if (data.recipients) {
-             log("✅ Data Received! Stopping PULL.");
-             
-             // 停止請求
-             if(pullTimer) clearInterval(pullTimer);
-             
-             // 渲染畫面
-             renderData(data);
+            log("✅ Data Received! Stopping PULL.");
+
+            // 停止請求
+            if (pullTimer) clearInterval(pullTimer);
+
+            // 渲染畫面
+            renderData(data);
         }
     } catch (e) {
         log("Error: " + e.message);
@@ -88,7 +88,7 @@ function onParentMessageReceived(arg) {
 function renderData(data) {
     const container = document.getElementById("recipients-list");
     container.innerHTML = "";
-    
+
     if (data.recipients && data.recipients.length > 0) {
         data.recipients.forEach((p, i) => {
             const d = document.createElement("div");
@@ -100,9 +100,9 @@ function renderData(data) {
             container.appendChild(d);
         });
     } else {
-        container.innerHTML = "無收件人";
+        container.innerHTML = "No recipients";
     }
-    
+
     // 附件
     const attContainer = document.getElementById("attachments-list");
     attContainer.innerHTML = "";
@@ -117,20 +117,20 @@ function renderData(data) {
             attContainer.appendChild(d);
         });
     } else {
-        attContainer.innerText = "無附件";
+        attContainer.innerText = "No attachments";
     }
 
     checkAllChecked();
 }
 
-window.checkAllChecked = function() {
+window.checkAllChecked = function () {
     const all = document.querySelectorAll(".verify-check");
     let pass = true;
-    all.forEach(c => { if(!c.checked) pass = false; });
-    
+    all.forEach(c => { if (!c.checked) pass = false; });
+
     const btn = document.getElementById("btnSend");
     if (all.length === 0) pass = true;
-    
+
     btn.disabled = !pass;
     if (pass) {
         btn.style.opacity = "1";

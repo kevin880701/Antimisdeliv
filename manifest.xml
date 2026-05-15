@@ -90,7 +90,7 @@
         <bt:Url id="taskpaneUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="Send Check" />
+        <bt:String id="groupLabel" DefaultValue="Pre-send Check" />
         <bt:String id="paneButtonLabel" DefaultValue="Open Checklist" />
       </bt:ShortStrings>
       <bt:LongStrings>
@@ -163,7 +163,7 @@
           <bt:Url id="taskpaneUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/taskpane.html" />
         </bt:Urls>
         <bt:ShortStrings>
-          <bt:String id="groupLabel" DefaultValue="Send Check" />
+          <bt:String id="groupLabel" DefaultValue="Pre-send Check" />
           <bt:String id="paneButtonLabel" DefaultValue="Open Checklist" />
         </bt:ShortStrings>
         <bt:LongStrings>
