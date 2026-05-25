@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
             --color-brand: #0078d4;
             --bg-success: #dff6dd;
             --text-success: #107c10;
-            
+
             /* 標籤顏色 */
             --tag-external-bg: #fde7e9;
             --tag-external-text: #c50f1f;
@@ -42,89 +43,205 @@
             }
         }
 
-        body { 
-            font-family: 'Segoe UI', system-ui, sans-serif; 
-            padding: 15px; 
-            background-color: var(--bg-body); 
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 15px;
+            background-color: var(--bg-body);
             color: var(--text-primary);
             margin: 0;
             padding-bottom: 100px;
         }
 
-        header { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--color-brand); }
-        h3 { margin: 0; font-size: 18px; font-weight: 600; }
-        .subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
-
-        .section { 
-            margin-bottom: 15px; 
-            background-color: var(--bg-card); 
-            border: 1px solid var(--border-card); 
-            border-radius: 8px; 
-            overflow: hidden; 
+        header {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-brand);
         }
-        
-        .section-title { 
-            padding: 8px 12px; font-weight: 700; color: var(--text-primary); 
-            font-size: 13px; background-color: rgba(0,0,0,0.03);
+
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            padding: 8px 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 13px;
+            background-color: rgba(0, 0, 0, 0.03);
             border-bottom: 1px solid var(--border-card);
         }
 
-        .domain-group { border-bottom: 1px solid var(--border-card); }
-        .domain-group:last-child { border-bottom: none; }
+        .domain-group {
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .domain-group:last-child {
+            border-bottom: none;
+        }
 
         .domain-header {
-            padding: 6px 12px; font-size: 13px; font-weight: 600;
-            color: var(--text-secondary); background-color: var(--header-domain-bg);
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background-color: var(--header-domain-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid var(--border-card);
         }
 
         .domain-header input[type="checkbox"] {
-            margin: 0 10px 0 0; width: 16px; height: 16px; cursor: pointer;
+            margin: 0 10px 0 0;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
             accent-color: var(--color-brand);
         }
 
-        .tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-        .tag.external { background-color: var(--tag-external-bg); color: var(--tag-external-text); }
-        .tag.internal { background-color: var(--tag-internal-bg); color: var(--tag-internal-text); }
+        .tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        .item-row { display: flex; align-items: flex-start; padding: 6px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .tag.external {
+            background-color: var(--tag-external-bg);
+            color: var(--tag-external-text);
+        }
+
+        .tag.internal {
+            background-color: var(--tag-internal-bg);
+            color: var(--tag-internal-text);
+        }
+
+        .item-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
         /* 只有在網域分組下的項目才需要縮排 */
-        .domain-group .item-row { padding-left: 38px; }
-        .item-row:last-child { border-bottom: none; }
-        
-        .item-row input[type="checkbox"] { margin-top: 3px; margin-right: 10px; width: 16px; height: 16px; accent-color: var(--color-brand); cursor: pointer; }
-        
-        .safe-icon { margin-right: 10px; width: 16px; text-align: center; font-size: 14px; }
-        
-        .item-content { flex: 1; overflow: hidden; }
-        .name { font-size: 14px; font-weight: 500; }
-        .email { font-size: 12px; color: var(--text-secondary); word-break: break-all; }
-        .empty-msg { padding: 10px; color: var(--text-secondary); font-size: 13px; font-style: italic; }
+        .domain-group .item-row {
+            padding-left: 38px;
+        }
 
-        .btn-container { 
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--bg-body); padding: 15px; 
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .item-row input[type="checkbox"] {
+            margin-top: 3px;
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--color-brand);
+            cursor: pointer;
+        }
+
+        .safe-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .item-content {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .email {
+            font-size: 12px;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        .empty-msg {
+            padding: 10px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .btn-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-body);
+            padding: 15px;
             border-top: 1px solid var(--border-card);
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        button { 
-            padding: 12px; border: none; border-radius: 6px; width: 100%; 
-            font-size: 15px; font-weight: 600; transition: all 0.2s;
-            background-color: var(--color-brand); color: white; cursor: pointer;
-        }
-        button:disabled { background-color: #ccc; cursor: not-allowed; opacity: 0.7; }
 
-        #status-msg { display: none; text-align: center; padding: 20px; color: var(--text-success); font-weight: bold; }
-        #error-log { color: red; font-size: 12px; margin-top: 10px; white-space: pre-wrap; display: none; border: 1px solid red; padding: 5px;}
-        
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+            background-color: var(--color-brand);
+            color: white;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #status-msg {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: var(--text-success);
+            font-weight: bold;
+        }
+
+        #error-log {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            display: none;
+            border: 1px solid red;
+            padding: 5px;
+        }
     </style>
 </head>
+
 <body>
 
     <header>
-        <h3>Pre-send Check</h3>
+        <h3>Antimisdeliv</h3>
         <div class="subtitle">Please verify all recipients and attachments</div>
     </header>
 
@@ -166,11 +283,12 @@
 
     <div class="section">
         <div class="section-title">Content</div>
-        <div id="body-container" style="padding: 10px 12px; font-size: 12px; overflow-wrap: break-word; max-height: 150px; overflow-y: auto;">
+        <div id="body-container"
+            style="padding: 10px 12px; font-size: 12px; overflow-wrap: break-word; max-height: 150px; overflow-y: auto;">
             Loading...
         </div>
     </div>
-    
+
     <div id="status-msg">
         <div style="font-size: 24px;">🎉</div>
         Check complete, you're ready to send!
@@ -182,4 +300,5 @@
 
     <script src="taskpane.js"></script>
 </body>
+
 </html>
