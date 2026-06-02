@@ -7,7 +7,7 @@
   xsi:type="MailApp">
 
   <Id>a4567890-bcde-1234-5678-90abcdef1240</Id>
-  <Version>1.0.1.8</Version>
+  <Version>1.0.1.9</Version>
   <ProviderName>AST</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Antimisdeliv" />
@@ -91,7 +91,7 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
-        <bt:String id="paneButtonLabel" DefaultValue="Open Checklist" />
+        <bt:String id="paneButtonLabel" DefaultValue="Antimisdeliv" />
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="paneButtonDesc" DefaultValue="Open the sidebar to confirm recipients and attachments" />
@@ -164,7 +164,7 @@
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
-          <bt:String id="paneButtonLabel" DefaultValue="Open Checklist" />
+          <bt:String id="paneButtonLabel" DefaultValue="Antimisdeliv" />
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="paneButtonDesc" DefaultValue="Open the sidebar to confirm recipients and attachments" />
