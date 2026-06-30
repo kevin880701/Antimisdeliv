@@ -1,28 +1,30 @@
 Office.onReady();
 
+function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+    }
+    return hash.toString(36);
+}
+
 // 1. 發送攔截 
 function validateSend(event) {
     // 讀取這封信的自訂屬性 'isVerified'
     Office.context.mailbox.item.loadCustomPropertiesAsync(async (result) => {
         const props = result.value;
         const isVerified = props.get("isVerified");
-        const verifiedStateJson = props.get("verifiedState");
+        const verifiedStateHash = props.get("verifiedState");
 
-        if (isVerified === true && verifiedStateJson) {
-            // 讀取目前的狀態進行比對
+        if (isVerified === true && verifiedStateHash) {
             try {
                 const currentState = await getCurrentState();
-                const savedState = JSON.parse(verifiedStateJson);
+                const rawStateString = `${currentState.recipients}_${currentState.attachments}_${currentState.subject}_${currentState.bodyFingerprint}`;
+                const currentHash = hashCode(rawStateString);
 
-                // 比對各項欄位
-                const isMatch = (
-                    currentState.recipients === savedState.recipients &&
-                    currentState.attachments === savedState.attachments &&
-                    currentState.subject === savedState.subject &&
-                    currentState.bodyFingerprint === savedState.bodyFingerprint
-                );
-
-                if (isMatch) {
+                // 比對雜湊值是否相符
+                if (currentHash === verifiedStateHash) {
                     // 驗證通過且內容未更動 -> 放行
                     event.completed({ allowEvent: true });
                 } else {
@@ -31,7 +33,7 @@ function validateSend(event) {
                     props.saveAsync(() => {
                         event.completed({
                             allowEvent: false,
-                            errorMessage: "Email content or recipients have changed since verification. Please open the 'K-Antimisdeliv' checklist to re-verify before sending."
+                            errorMessage: "Email content or recipients have changed since verification. Please open the 'Antimisdeliv' checklist to re-verify before sending."
                         });
                     });
                 }
@@ -46,7 +48,7 @@ function validateSend(event) {
             // 未驗證 -> 阻擋
             event.completed({
                 allowEvent: false,
-                errorMessage: "Please click the 'K-Antimisdeliv' button above to confirm recipients and attachments before sending."
+                errorMessage: "Please click the 'Antimisdeliv' button above to confirm recipients and attachments before sending."
             });
         }
     });
@@ -72,7 +74,7 @@ async function getCurrentState() {
         safeGet(cb => item.body.getAsync(Office.CoercionType.Text, cb))
     ]);
 
-    const getEmails = (arr) => (arr || []).map(p => p.emailAddress.toLowerCase()).sort().join(";");
+    const getEmails = (arr) => (arr || []).filter(p => p && p.emailAddress).map(p => p.emailAddress.toLowerCase()).sort().join(";");
     const getAtts = (arr) => (arr || []).map(a => a.name + a.size).sort().join(";");
 
     const bodyFingerprint = body ? `${body.length}_${body.substring(0, 50)}` : "empty";
