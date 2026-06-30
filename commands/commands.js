@@ -31,7 +31,7 @@ function validateSend(event) {
                     props.saveAsync(() => {
                         event.completed({
                             allowEvent: false,
-                            errorMessage: "Email content or recipients have changed since verification. Please open the 'Antimisdeliv' checklist to re-verify before sending."
+                            errorMessage: "Email content or recipients have changed since verification. Please open the 'K-Antimisdeliv' checklist to re-verify before sending."
                         });
                     });
                 }
@@ -46,7 +46,7 @@ function validateSend(event) {
             // 未驗證 -> 阻擋
             event.completed({
                 allowEvent: false,
-                errorMessage: "Please click the 'Antimisdeliv' button above to confirm recipients and attachments before sending."
+                errorMessage: "Please click the 'K-Antimisdeliv' button above to confirm recipients and attachments before sending."
             });
         }
     });

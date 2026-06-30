@@ -315,7 +315,7 @@ async function getCurrentState() {
         safeGet(cb => item.body.getAsync(Office.CoercionType.Text, cb))
     ]);
 
-    const getEmails = (arr) => (arr || []).map(p => p.emailAddress.toLowerCase()).sort().join(";");
+    const getEmails = (arr) => (arr || []).filter(p => p && p.emailAddress).map(p => p.emailAddress.toLowerCase()).sort().join(";");
     const getAtts = (arr) => (arr || []).map(a => a.name + a.size).sort().join(";");
 
     // Simple fingerprint for body to detect changes without storing huge strings

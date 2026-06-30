@@ -10,7 +10,7 @@
   <Version>1.0.2.0</Version>
   <ProviderName>AST</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Antimisdeliv" />
+  <DisplayName DefaultValue="K-Antimisdeliv" />
   <Description DefaultValue="Force check recipients and attachments before sending" />
   <IconUrl DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
 
@@ -90,8 +90,8 @@
         <bt:Url id="taskpaneUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
-        <bt:String id="paneButtonLabel" DefaultValue="Antimisdeliv" />
+        <bt:String id="groupLabel" DefaultValue="K-Antimisdeliv" />
+        <bt:String id="paneButtonLabel" DefaultValue="K-Antimisdeliv" />
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="paneButtonDesc" DefaultValue="Open the sidebar to confirm recipients and attachments" />
@@ -163,8 +163,8 @@
           <bt:Url id="taskpaneUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/taskpane.html" />
         </bt:Urls>
         <bt:ShortStrings>
-          <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
-          <bt:String id="paneButtonLabel" DefaultValue="Antimisdeliv" />
+          <bt:String id="groupLabel" DefaultValue="K-Antimisdeliv" />
+          <bt:String id="paneButtonLabel" DefaultValue="K-Antimisdeliv" />
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="paneButtonDesc" DefaultValue="Open the sidebar to confirm recipients and attachments" />
