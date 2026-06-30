@@ -41,7 +41,7 @@ function validateSend(event) {
                 // 發生錯誤，阻擋發送
                 event.completed({
                     allowEvent: false,
-                    errorMessage: "Verification error. Please re-open the checklist and verify again."
+                    errorMessage: "Verification error (" + e.toString() + "). Please re-open the checklist and verify again."
                 });
             }
         } else {
@@ -87,5 +87,9 @@ async function getCurrentState() {
     };
 }
 
-if (typeof g === 'undefined') var g = window;
+const g = typeof globalThis !== 'undefined' ? globalThis : 
+          typeof window !== 'undefined' ? window : 
+          typeof global !== 'undefined' ? global : 
+          typeof self !== 'undefined' ? self : this;
+
 g.validateSend = validateSend;
