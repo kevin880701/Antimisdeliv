@@ -6,13 +6,13 @@
   xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
   xsi:type="MailApp">
 
-  <Id>a4567890-bcde-1234-5678-90abcdef1240</Id>
-  <Version>1.0.1.9</Version>
+  <Id>a4567890-bcde-1234-5678-90abcdef1230</Id>
+  <Version>1.0.2.0</Version>
   <ProviderName>AST</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Antimisdeliv" />
   <Description DefaultValue="Force check recipients and attachments before sending" />
-  <IconUrl DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
+  <IconUrl DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
 
   <Hosts>
     <Host Name="Mailbox" />
@@ -27,7 +27,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/taskpane.html"/>
+        <SourceLocation DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -80,14 +80,14 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="icon16" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-16.png?v=1.0.1.0" />
-        <bt:Image id="icon32" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-32.png?v=1.0.1.0" />
-        <bt:Image id="icon64" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
-        <bt:Image id="icon80" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-80.png?v=1.0.1.0" />
+        <bt:Image id="icon16" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-16.png?v=1.0.1.0" />
+        <bt:Image id="icon32" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-32.png?v=1.0.1.0" />
+        <bt:Image id="icon64" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
+        <bt:Image id="icon80" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-80.png?v=1.0.1.0" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="funcUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/commands/commands.html" />
-        <bt:Url id="taskpaneUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/taskpane.html" />
+        <bt:Url id="funcUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/commands/commands.html" />
+        <bt:Url id="taskpaneUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
@@ -153,14 +153,14 @@
 
       <Resources>
         <bt:Images>
-          <bt:Image id="icon16" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-16.png?v=1.0.1.0" />
-          <bt:Image id="icon32" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-32.png?v=1.0.1.0" />
-          <bt:Image id="icon64" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
-          <bt:Image id="icon80" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/assets/icon-80.png?v=1.0.1.0" />
+          <bt:Image id="icon16" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-16.png?v=1.0.1.0" />
+          <bt:Image id="icon32" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-32.png?v=1.0.1.0" />
+          <bt:Image id="icon64" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-64.png?v=1.0.1.0" />
+          <bt:Image id="icon80" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/assets/icon-80.png?v=1.0.1.0" />
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="funcUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/commands/commands.html" />
-          <bt:Url id="taskpaneUrl" DefaultValue="https://red-tree-099d3fe00.6.azurestaticapps.net/taskpane.html" />
+          <bt:Url id="funcUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/commands/commands.html" />
+          <bt:Url id="taskpaneUrl" DefaultValue="https://jolly-flower-0ec6ac310.7.azurestaticapps.net/taskpane.html" />
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="groupLabel" DefaultValue="Antimisdeliv" />
