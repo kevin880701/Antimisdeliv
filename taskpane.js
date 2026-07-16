@@ -329,13 +329,27 @@ async function getCurrentState() {
     };
 }
 
+function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash.toString(36); // 轉成 36 進位字串更短
+}
+
 async function markAsVerified() {
     const state = await getCurrentState();
+
+    // 由於 CustomProperties 單個屬性有 28KB 大小限制，
+    // 我們將特徵組合字串進行 Hash 壓縮，只儲存一個極短的指紋字串（例如 "9u2p1a"），不佔空間且非常安全。
+    const rawStateString = `${state.recipients}_${state.attachments}_${state.subject}_${state.bodyFingerprint}`;
+    const hashedState = hashCode(rawStateString);
 
     Office.context.mailbox.item.loadCustomPropertiesAsync((result) => {
         const props = result.value;
         props.set("isVerified", true);
-        props.set("verifiedState", JSON.stringify(state));
+        props.set("verifiedState", hashedState);
 
         props.saveAsync((saveResult) => {
             if (saveResult.status === Office.AsyncResultStatus.Succeeded) {
