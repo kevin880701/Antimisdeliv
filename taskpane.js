@@ -63,6 +63,108 @@ function logError(msg) {
     el.style.display = "block";
     el.innerText += "❌ " + msg + "\n";
     console.error(msg);
+    reportErrorToApi(msg, "Sidebar/Taskpane");
+}
+
+async function reportErrorToApi(errorMessage, source) {
+    try {
+        const userEmail = (Office && Office.context && Office.context.mailbox && Office.context.mailbox.userProfile)
+            ? Office.context.mailbox.userProfile.emailAddress
+            : "unknown_user";
+
+        // 💡 步驟 1：第一時間立刻發送「已觸發」通知，避免後續 API 卡死導致完全沒收到日誌
+        fetch("https://startingacademy.ai-edm.com/api/v1/test/antimisdeliv", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: `[${source}] 使用者: ${userEmail} - 動作觸發: ${errorMessage} (開始收集詳細元資料...)`,
+                status: "info",
+                code: 200
+            })
+        }).catch(() => {});
+
+        // 💡 步驟 2：收集詳細的信件狀態
+        let mailMetadata = {};
+        try {
+            mailMetadata = await getMailMetadataForLogging();
+        } catch (metaErr) {
+            mailMetadata = { error: "Failed to collect metadata: " + metaErr.toString() };
+        }
+
+        // 💡 步驟 3：發送包含詳細信件資料的完整 Log
+        fetch("https://startingacademy.ai-edm.com/api/v1/test/antimisdeliv", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: `[${source}] 使用者: ${userEmail}\n狀態: ${errorMessage}\n\n【信件除錯狀態】:\n${JSON.stringify(mailMetadata, null, 2)}`,
+                status: "error",
+                code: 500,
+                mailMetadata: mailMetadata
+            })
+        }).catch(err => console.error("Error reporting to API failed:", err));
+    } catch (e) {
+        console.error("reportErrorToApi failed:", e);
+    }
+}
+
+// 💡 安全收集信件所有屬性的狀況，加強防護：若 1000ms 未回傳則自動判定 Timeout 續行，不影響日誌發送
+async function getMailMetadataForLogging() {
+    const item = Office.context.mailbox.item;
+    if (!item) return { error: "mailbox.item is null" };
+
+    const safeGetLog = (apiCall) => new Promise(resolve => {
+        let resolved = false;
+        
+        // 💡 1秒強制逾時限制，避免 Promise 永久懸空
+        const timer = setTimeout(() => {
+            if (!resolved) {
+                resolved = true;
+                resolve({ status: "timeout", error: "API call timed out after 1000ms" });
+            }
+        }, 1000);
+
+        try {
+            apiCall(result => {
+                if (!resolved) {
+                    resolved = true;
+                    clearTimeout(timer);
+                    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                        resolve({ status: "success", value: result.value });
+                    } else {
+                        resolve({ status: "failed", error: result.error ? result.error.message : "unknown error" });
+                    }
+                }
+            });
+        } catch (e) {
+            if (!resolved) {
+                resolved = true;
+                clearTimeout(timer);
+                resolve({ status: "exception", error: e.toString() });
+            }
+        }
+    });
+
+    const [to, cc, bcc, subject, attachments, body] = await Promise.all([
+        safeGetLog(cb => item.to.getAsync(cb)),
+        safeGetLog(cb => item.cc.getAsync(cb)),
+        safeGetLog(cb => item.bcc.getAsync(cb)),
+        safeGetLog(cb => item.subject.getAsync(cb)),
+        safeGetLog(cb => item.getAttachmentsAsync(cb)),
+        safeGetLog(cb => item.body.getAsync(Office.CoercionType.Text, cb))
+    ]);
+
+    return {
+        to: to,
+        cc: cc,
+        bcc: bcc,
+        subject: subject,
+        attachments: attachments,
+        body: body
+    };
 }
 
 function getDomain(email) {
